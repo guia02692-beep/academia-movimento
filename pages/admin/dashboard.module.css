@@ -1,0 +1,102 @@
+.tituloPagina {
+  font-size: 1.3rem;
+  color: var(--cor-texto-principal);
+}
+
+.subtitulo {
+  margin: 6px 0 20px;
+  color: var(--cor-texto-secundario);
+  font-size: 0.9rem;
+}
+
+.gradeIndicadores {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+@media (min-width: 640px) {
+  .gradeIndicadores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gradeIndicadores {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.indicadorValor {
+  font-family: var(--fonte-titulo);
+  font-size: 1.8rem;
+  color: var(--cor-texto-principal);
+  margin: 0;
+}
+
+.indicadorVariacao {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.tendencia_alta {
+  color: #4caf50;
+}
+
+.tendencia_baixa {
+  color: #d64545;
+}
+
+.tendencia_estavel {
+  color: var(--cor-texto-secundario);
+}
+
+.tituloSecao {
+  font-size: 1.05rem;
+  color: var(--cor-texto-principal);
+  margin-bottom: 12px;
+}
+
+.listaAlertas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cabecalhoAlerta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.marcadorNivel {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.nivel_info {
+  background-color: #4a90d9;
+}
+
+.nivel_atencao {
+  background-color: var(--cor-destaque);
+}
+
+.nivel_critico {
+  background-color: #d64545;
+}
+
+.alertaTitulo {
+  font-weight: 600;
+  color: var(--cor-texto-principal);
+  font-size: 0.92rem;
+}
+
+.alertaDescricao {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--cor-texto-secundario);
+}

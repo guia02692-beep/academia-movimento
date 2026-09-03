@@ -1,0 +1,93 @@
+/* ---------------------------------------------------------------
+   Tokens de marca — Academia Movimento
+   Cores base: preto, laranja, dois cinzas.
+   O tema claro/escuro reorganiza esses mesmos tokens; a cor de
+   destaque (laranja) permanece constante nos dois modos.
+----------------------------------------------------------------*/
+
+:root {
+  --cor-preto: #171512;
+  --cor-laranja: #ff6a00;
+  --cor-cinza-claro: #f4f3f1;
+  --cor-cinza-medio: #8c8880;
+
+  --fonte-titulo: "Montserrat", "Segoe UI", sans-serif;
+  --fonte-texto: "Open Sans", "Segoe UI", sans-serif;
+
+  --raio-padrao: 10px;
+  --transicao-padrao: 160ms ease;
+}
+
+/* Tema claro (padrão) */
+[data-tema="claro"] {
+  --cor-fundo: var(--cor-cinza-claro);
+  --cor-fundo-elevado: #ffffff;
+  --cor-texto-principal: var(--cor-preto);
+  --cor-texto-secundario: var(--cor-cinza-medio);
+  --cor-borda: #e3e1dd;
+  --cor-destaque: var(--cor-laranja);
+  --cor-destaque-texto: #ffffff;
+}
+
+/* Tema escuro */
+[data-tema="escuro"] {
+  --cor-fundo: var(--cor-preto);
+  --cor-fundo-elevado: #211e1a;
+  --cor-texto-principal: var(--cor-cinza-claro);
+  --cor-texto-secundario: var(--cor-cinza-medio);
+  --cor-borda: #33302b;
+  --cor-destaque: var(--cor-laranja);
+  --cor-destaque-texto: #171512;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-principal);
+  font-family: var(--fonte-texto);
+  transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font-family: var(--fonte-texto);
+}
+
+/* Mobile-first: base pensada para telas pequenas, breakpoints ampliam */
+.container {
+  width: 100%;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1120px;
+  }
+}

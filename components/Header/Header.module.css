@@ -1,0 +1,49 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo-elevado);
+}
+
+.marca {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--cor-texto-principal);
+}
+
+.acoes {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.botaoTema {
+  background: transparent;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-padrao);
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  color: var(--cor-texto-secundario);
+  cursor: pointer;
+}
+
+.botaoTema:hover {
+  border-color: var(--cor-destaque);
+  color: var(--cor-texto-principal);
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--cor-destaque);
+  color: var(--cor-destaque-texto);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}

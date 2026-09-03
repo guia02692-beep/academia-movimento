@@ -1,0 +1,23 @@
+.card {
+  background-color: var(--cor-fundo-elevado);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-padrao);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.destaque {
+  border-left: 3px solid var(--cor-destaque);
+}
+
+.titulo {
+  font-size: 1.05rem;
+  color: var(--cor-texto-principal);
+}
+
+.conteudo {
+  color: var(--cor-texto-secundario);
+  font-size: 0.95rem;
+}

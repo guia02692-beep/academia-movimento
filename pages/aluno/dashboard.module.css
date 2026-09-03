@@ -1,0 +1,93 @@
+.tituloPagina {
+  font-size: 1.3rem;
+  color: var(--cor-texto-principal);
+}
+
+.subtitulo {
+  margin: 6px 0 20px;
+  color: var(--cor-texto-secundario);
+  font-size: 0.9rem;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .grade {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+  }
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.itemLista {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.itemLista:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.itemPrincipal {
+  color: var(--cor-texto-principal);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.itemSecundario {
+  color: var(--cor-texto-secundario);
+  font-size: 0.82rem;
+}
+
+.itemVagas {
+  font-size: 0.78rem;
+  color: var(--cor-destaque);
+  font-weight: 600;
+}
+
+.status {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-top: 2px;
+}
+
+.status_confirmada {
+  background-color: rgba(76, 175, 80, 0.15);
+  color: #4caf50;
+}
+
+.status_pendente {
+  background-color: rgba(255, 106, 0, 0.15);
+  color: var(--cor-destaque);
+}
+
+.status_cancelada {
+  background-color: rgba(214, 69, 69, 0.15);
+  color: #d64545;
+}
+
+.frequenciaValor {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  color: var(--cor-texto-principal);
+  margin: 4px 0 0;
+}

@@ -1,0 +1,36 @@
+.grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.rotulo {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cor-texto-secundario);
+}
+
+.campo {
+  padding: 12px 14px;
+  border-radius: var(--raio-padrao);
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo-elevado);
+  color: var(--cor-texto-principal);
+  font-size: 1rem;
+  transition: border-color var(--transicao-padrao);
+}
+
+.campo:focus {
+  outline: none;
+  border-color: var(--cor-destaque);
+}
+
+.campoComErro {
+  border-color: #d64545;
+}
+
+.erro {
+  font-size: 0.8rem;
+  color: #d64545;
+}
