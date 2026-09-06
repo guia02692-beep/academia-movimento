@@ -27,6 +27,7 @@
   --cor-borda: #e3e1dd;
   --cor-destaque: var(--cor-laranja);
   --cor-destaque-texto: #ffffff;
+  --cor-destaque-suave: rgba(255, 106, 0, 0.10);
 }
 
 /* Tema escuro */
@@ -38,6 +39,7 @@
   --cor-borda: #33302b;
   --cor-destaque: var(--cor-laranja);
   --cor-destaque-texto: #171512;
+  --cor-destaque-suave: rgba(255, 106, 0, 0.16);
 }
 
 * {

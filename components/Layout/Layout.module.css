@@ -12,7 +12,10 @@
 
 .conteudo {
   flex: 1;
-  padding: 20px 16px;
+  padding: 28px 16px 36px;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
@@ -21,6 +24,6 @@
   }
 
   .conteudo {
-    padding: 28px 32px;
+    padding: 38px 40px 48px;
   }
 }
