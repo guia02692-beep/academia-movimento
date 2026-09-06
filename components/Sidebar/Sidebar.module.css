@@ -1,7 +1,9 @@
 .sidebar {
   background-color: var(--cor-fundo-elevado);
   border-right: 1px solid var(--cor-borda);
-  padding: 16px 8px;
+  padding: 24px 12px;
+  display: flex;
+  flex-direction: column;
 }
 
 .lista {
@@ -15,9 +17,11 @@
 }
 
 .link {
-  display: block;
-  padding: 10px 14px;
-  border-radius: var(--raio-padrao);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 13px;
+  border-radius: 8px;
   color: var(--cor-texto-secundario);
   font-size: 0.9rem;
   font-weight: 600;
@@ -29,16 +33,24 @@
 }
 
 .linkAtivo {
-  color: var(--cor-destaque-texto);
-  background-color: var(--cor-destaque);
+  color: var(--cor-destaque);
+  background-color: var(--cor-destaque-suave);
 }
+.icone { display: grid; place-items: center; width: 19px; font-size: 1.1rem; line-height: 1; font-weight: 700; }
+.rotuloMenu { margin: 0 0 11px 13px; color: var(--cor-texto-secundario); font-size: .63rem; letter-spacing: .12em; font-weight: 700; }
+.ajuda { display: none; }
 
 @media (min-width: 768px) {
   .sidebar {
     min-width: 220px;
+    width: 220px;
   }
 
   .lista {
     flex-direction: column;
   }
+  .ajuda { display: flex; align-items: center; gap: 9px; margin: auto 5px 0; padding: 13px 10px; border-top: 1px solid var(--cor-borda); color: var(--cor-texto-secundario); font-size: .72rem; }
+  .ajuda small { display: block; margin-top: 2px; font-size: .67rem; }
+  .ajudaIcone { width: 20px; height: 20px; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; font-weight: 700; }
 }
+@media (max-width: 767px) { .rotuloMenu { display: none; } }

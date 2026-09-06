@@ -2,17 +2,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
+  min-height: 72px;
+  padding: 12px 20px;
   border-bottom: 1px solid var(--cor-borda);
   background-color: var(--cor-fundo-elevado);
 }
 
 .marca {
-  font-family: var(--fonte-titulo);
-  font-weight: 700;
-  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: var(--cor-texto-principal);
 }
+
+.marcaSimbolo { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 9px; background: var(--cor-destaque); color: #fff; font-family: var(--fonte-titulo); font-style: italic; font-weight: 800; font-size: 1.2rem; }
+.marca strong, .marca small { display: block; line-height: 1; }
+.marca strong { font-family: var(--fonte-titulo); font-size: 1rem; letter-spacing: -0.04em; }
+.marca small { margin-top: 3px; color: var(--cor-texto-secundario); font-size: .61rem; letter-spacing: .16em; text-transform: uppercase; }
 
 .acoes {
   display: flex;
@@ -21,10 +27,13 @@
 }
 
 .botaoTema {
-  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--cor-fundo);
   border: 1px solid var(--cor-borda);
-  border-radius: var(--raio-padrao);
-  padding: 8px 12px;
+  border-radius: 999px;
+  padding: 8px 11px;
   font-size: 0.8rem;
   color: var(--cor-texto-secundario);
   cursor: pointer;
@@ -39,11 +48,15 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: var(--cor-destaque);
-  color: var(--cor-destaque-texto);
+  background-color: var(--cor-preto);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 0.85rem;
 }
+
+.usuario { display: flex; align-items: center; gap: 9px; }
+.nomeUsuario { max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--cor-texto-principal); font-size: .82rem; font-weight: 700; }
+@media (max-width: 560px) { .header { padding: 10px 14px; } .rotuloTema, .nomeUsuario { display: none; } .botaoTema { width: 36px; height: 36px; justify-content: center; padding: 0; } }
