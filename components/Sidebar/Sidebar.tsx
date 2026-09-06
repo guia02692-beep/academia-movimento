@@ -12,13 +12,13 @@ interface ItemMenu {
 const MENU_POR_PERFIL: Record<PerfilUsuario, ItemMenu[]> = {
   aluno: [
     { rotulo: "Início", href: "/aluno/dashboard", icone: "⌂" },
-    { rotulo: "Minhas aulas", href: "/aluno/dashboard", icone: "◫" },
-    { rotulo: "Reservas", href: "/aluno/dashboard", icone: "✓" },
+    { rotulo: "Minhas aulas", href: "/aluno/aulas", icone: "◫" },
+    { rotulo: "Reservas", href: "/aluno/reservas", icone: "✓" },
   ],
   admin: [
     { rotulo: "Visão geral", href: "/admin/dashboard", icone: "⌁" },
-    { rotulo: "Alunos", href: "/admin/dashboard", icone: "◉" },
-    { rotulo: "Alertas", href: "/admin/dashboard", icone: "!" },
+    { rotulo: "Alunos", href: "/admin/alunos", icone: "◉" },
+    { rotulo: "Alertas", href: "/admin/alertas", icone: "!" },
   ],
 };
 
@@ -34,12 +34,12 @@ export function Sidebar({ perfil }: SidebarProps) {
     <nav className={styles.sidebar} aria-label={`Navegação do perfil ${perfil}`}>
       <p className={styles.rotuloMenu}>MENU PRINCIPAL</p>
       <ul className={styles.lista}>
-        {itens.map((item, indice) => (
+        {itens.map((item) => (
           <li key={item.rotulo}>
             <Link
               href={item.href}
               className={`${styles.link} ${
-                router.pathname === item.href && indice === 0 ? styles.linkAtivo : ""
+                router.pathname === item.href ? styles.linkAtivo : ""
               }`}
             >
               <span className={styles.icone} aria-hidden="true">{item.icone}</span>
