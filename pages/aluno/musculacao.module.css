@@ -1,0 +1,73 @@
+.cabecalho { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin: 8px 0 22px; }
+.cabecalho h1 { font-size: clamp(1.55rem, 3vw, 2.15rem); letter-spacing: -.045em; }
+.cabecalho p:not(.sobrancelha) { margin: 8px 0 0; color: var(--cor-texto-secundario); font-size: .9rem; }
+.sobrancelha { margin: 0 0 7px; color: var(--cor-destaque); font-size: .66rem; letter-spacing: .13em; font-weight: 800; }
+.botaoNeutro { padding: 11px 14px; border-radius: 8px; border: 1px solid var(--cor-borda); background: var(--cor-fundo-elevado); color: var(--cor-texto-principal); font-size: .8rem; font-weight: 700; white-space: nowrap; }
+
+.avisoIncompleto { margin: 0 0 8px; color: var(--cor-texto-principal); font-size: .88rem; }
+.linkAviso { color: var(--cor-destaque); font-size: .82rem; font-weight: 700; }
+
+.gradePerfil { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 26px; }
+.valorPerfil { margin: 0; color: var(--cor-texto-principal); font-family: var(--fonte-titulo); font-size: 1.25rem; font-weight: 700; }
+.itemSecundario { color: var(--cor-texto-secundario); font-size: .78rem; }
+
+.secao { margin-bottom: 24px; }
+.cabecalhoSecao { margin-bottom: 12px; }
+.cabecalhoSecao h2 { font-size: 1.12rem; }
+
+.seletorTreino { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+.abaTreino { display: flex; flex-direction: column; gap: 4px; padding: 13px 14px; border: 1px solid var(--cor-borda); border-radius: 12px; background: var(--cor-fundo-elevado); color: var(--cor-texto-principal); cursor: pointer; text-align: left; }
+.abaTreino strong { font-family: var(--fonte-titulo); font-size: .95rem; }
+.abaTreino span { color: var(--cor-texto-secundario); font-size: .74rem; }
+.abaTreinoAtiva { border-color: var(--cor-destaque); background: var(--cor-destaque-suave); }
+.abaTreinoAtiva strong { color: var(--cor-destaque); }
+
+.cartaoTreino { border: 1px solid var(--cor-borda); border-radius: 14px; background: var(--cor-fundo-elevado); padding: 20px 22px; }
+.cabecalhoCartaoTreino { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+.diasTreino { display: block; margin-bottom: 4px; color: var(--cor-texto-secundario); font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+.cabecalhoCartaoTreino h3 { font-size: 1.05rem; }
+.progressoTreino { display: flex; flex-direction: column; gap: 6px; min-width: 160px; }
+.progressoTreino > span { color: var(--cor-texto-secundario); font-size: .74rem; text-align: right; }
+.barraProgresso { height: 6px; overflow: hidden; border-radius: 999px; background: var(--cor-borda); }
+.barraProgresso span { display: block; height: 100%; border-radius: inherit; background: var(--cor-destaque); transition: width var(--transicao-padrao); }
+
+.listaExercicios { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.exercicio { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 12px 4px; border-bottom: 1px solid var(--cor-borda); }
+.exercicio:last-child { border-bottom: none; padding-bottom: 0; }
+.exercicioConcluido { opacity: .55; }
+.checkbox { width: 26px; height: 26px; flex-shrink: 0; border-radius: 8px; border: 1px solid var(--cor-borda); background: var(--cor-fundo); color: var(--cor-destaque); font-weight: 800; cursor: pointer; }
+.exercicioConcluido .checkbox { border-color: var(--cor-destaque); background: var(--cor-destaque-suave); }
+.infoExercicio { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.tagGrupo { color: var(--cor-destaque); font-size: .65rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.nomeExercicio { color: var(--cor-texto-principal); font-weight: 600; font-size: .92rem; }
+.metasExercicio { display: flex; gap: 12px; color: var(--cor-texto-secundario); font-size: .78rem; white-space: nowrap; }
+.descanso { color: var(--cor-texto-secundario); }
+
+.gradeInferior { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 768px) {
+  .gradeInferior { grid-template-columns: minmax(0, 1fr) minmax(280px, .9fr); align-items: start; }
+}
+
+.lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.itemHistorico { display: flex; flex-direction: column; gap: 3px; padding: 12px 0; border-bottom: 1px solid var(--cor-borda); }
+.itemHistorico:last-child { border-bottom: none; padding-bottom: 0; }
+.itemPrincipal { color: var(--cor-texto-principal); font-weight: 600; font-size: .9rem; }
+
+.listaFoco { display: flex; flex-direction: column; gap: 11px; }
+.linhaFoco { display: grid; grid-template-columns: 80px 1fr 36px; align-items: center; gap: 10px; }
+.nomeFoco { color: var(--cor-texto-principal); font-size: .8rem; }
+.trilhaFoco { height: 6px; overflow: hidden; border-radius: 999px; background: var(--cor-borda); }
+.trilhaFoco span { display: block; height: 100%; border-radius: inherit; background: var(--cor-destaque); }
+.percentualFoco { color: var(--cor-texto-secundario); font-size: .74rem; text-align: right; }
+
+@media (max-width: 720px) {
+  .gradePerfil { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 650px) {
+  .cabecalho { align-items: stretch; flex-direction: column; }
+  .botaoNeutro { width: 100%; text-align: center; }
+  .seletorTreino { grid-template-columns: 1fr; }
+  .exercicio { grid-template-columns: auto 1fr; }
+  .metasExercicio { grid-column: 1 / -1; padding-left: 40px; flex-wrap: wrap; }
+}

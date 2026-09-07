@@ -1,0 +1,109 @@
+.tituloPagina {
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  letter-spacing: -.045em;
+  color: var(--cor-texto-principal);
+}
+
+.subtitulo {
+  margin: 8px 0 0;
+  color: var(--cor-texto-secundario);
+  font-size: 0.9rem;
+}
+
+.boasVindas { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding: 8px 0 30px; }
+.sobrancelha { margin: 0 0 7px; color: var(--cor-destaque); font-size: .66rem; letter-spacing: .13em; font-weight: 800; }
+.resumoSemana { width: 230px; padding: 15px 17px; border: 1px solid var(--cor-borda); border-radius: 12px; background: var(--cor-fundo-elevado); }
+.resumoSemana > span { color: var(--cor-texto-secundario); font-size: .72rem; }.resumoSemana strong { display: block; margin-top: 4px; font-family: var(--fonte-titulo); font-size: 1.2rem; }.resumoSemana small { color: var(--cor-texto-secundario); font-family: var(--fonte-texto); font-size: .74rem; font-weight: 400; }.barraProgresso { height: 5px; margin-top: 11px; overflow: hidden; border-radius: 999px; background: var(--cor-borda); }.barraProgresso span { display: block; width: 75%; height: 100%; border-radius: inherit; background: var(--cor-destaque); }
+.secao { margin-bottom: 22px; }.cabecalhoSecao { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 12px; }.cabecalhoSecao h2 { font-size: 1.12rem; }.linkAcao { border: 0; padding: 6px 0; background: transparent; color: var(--cor-destaque); font-size: .8rem; font-weight: 700; cursor: pointer; }.linkAcao span { margin-left: 4px; font-size: 1rem; }
+.gradeAulas {
+  background: var(--cor-fundo-elevado); border: 1px solid var(--cor-borda); border-radius: 14px; padding: 4px 18px;
+}
+.gradeInferior {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .gradeInferior {
+    grid-template-columns: minmax(0, 1.55fr) minmax(260px, .85fr);
+    align-items: start;
+  }
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.itemLista {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.itemLista:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.itemPrincipal {
+  color: var(--cor-texto-principal);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.blocoHora { display: flex; flex-direction: column; min-width: 45px; color: var(--cor-texto-principal); }.blocoHora strong { font-size: .9rem; }.blocoHora small { margin-top: 2px; color: var(--cor-texto-secundario); font-size: .65rem; text-transform: uppercase; }.detalhesAula { display: flex; flex-direction: column; gap: 3px; }
+
+.itemSecundario {
+  color: var(--cor-texto-secundario);
+  font-size: 0.82rem;
+}
+
+.itemVagas {
+  font-size: 0.78rem;
+  color: var(--cor-destaque);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-top: 2px;
+}
+
+.status_confirmada {
+  background-color: rgba(76, 175, 80, 0.15);
+  color: #4caf50;
+}
+
+.status_pendente {
+  background-color: rgba(255, 106, 0, 0.15);
+  color: var(--cor-destaque);
+}
+
+.status_cancelada {
+  background-color: rgba(214, 69, 69, 0.15);
+  color: #d64545;
+}
+
+.treinoHoje { display: flex; align-items: center; gap: 16px; padding: 14px 4px; }
+.letraTreino { display: grid; place-items: center; flex-shrink: 0; width: 46px; height: 46px; border-radius: 12px; background: var(--cor-destaque-suave); color: var(--cor-destaque); font-family: var(--fonte-titulo); font-size: 1.3rem; font-weight: 800; }
+.botaoIniciar { flex-shrink: 0; padding: 10px 16px; border-radius: 8px; background: var(--cor-destaque); color: #fff; font-size: .8rem; font-weight: 700; white-space: nowrap; }
+.semTreinoHoje { margin: 0; padding: 16px 4px; color: var(--cor-texto-secundario); font-size: .88rem; }
+@media (max-width: 600px) { .treinoHoje { flex-wrap: wrap; } .botaoIniciar { width: 100%; text-align: center; } }
+
+.frequenciaTopo { display: flex; align-items: center; justify-content: space-between; }
+.frequenciaTopo h3 { font-size: 1rem; }
+.anelProgresso { display: grid; place-items: center; width: 62px; height: 62px; border-radius: 50%; background: conic-gradient(var(--cor-destaque) 0 78%, var(--cor-borda) 78% 100%); color: var(--cor-texto-principal); font-size: .73rem; font-weight: 800; }
+@media (max-width: 600px) { .boasVindas { align-items: start; flex-direction: column; }.resumoSemana { width: 100%; }.itemVagas { font-size: .68rem; }.gradeAulas { padding: 3px 13px; } }

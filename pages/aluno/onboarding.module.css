@@ -1,0 +1,194 @@
+.pagina {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: var(--cor-preto);
+}
+
+.cartao {
+  width: 100%;
+  max-width: 460px;
+  background-color: var(--cor-fundo-elevado);
+  border-radius: var(--raio-padrao);
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.progresso {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sobrancelha {
+  color: var(--cor-destaque);
+  font-size: 0.66rem;
+  letter-spacing: 0.13em;
+  font-weight: 800;
+}
+
+.barraEtapas {
+  display: flex;
+  gap: 6px;
+}
+
+.segmento {
+  flex: 1;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--cor-borda);
+}
+
+.segmentoAtivo {
+  background: var(--cor-destaque);
+}
+
+.etapa {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.titulo {
+  font-size: 1.3rem;
+  letter-spacing: -0.03em;
+  color: var(--cor-texto-principal);
+}
+
+.subtitulo {
+  margin: 0 0 14px;
+  color: var(--cor-texto-secundario);
+  font-size: 0.88rem;
+}
+
+.campos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.grade2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 480px) {
+  .grade2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dica {
+  margin: 0;
+  color: var(--cor-texto-secundario);
+  font-size: 0.78rem;
+  font-style: italic;
+}
+
+.grupoChips {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rotuloChips {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cor-texto-secundario);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--cor-borda);
+  background: transparent;
+  color: var(--cor-texto-principal);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--transicao-padrao), background var(--transicao-padrao), color var(--transicao-padrao);
+}
+
+.chip:hover {
+  border-color: var(--cor-destaque);
+}
+
+.chipGrande {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  min-width: 132px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--cor-borda);
+  background: transparent;
+  color: var(--cor-texto-principal);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--transicao-padrao), background var(--transicao-padrao);
+}
+
+.chipGrande strong {
+  font-size: 0.86rem;
+}
+
+.chipGrande small {
+  color: var(--cor-texto-secundario);
+  font-size: 0.72rem;
+}
+
+.chipGrande:hover {
+  border-color: var(--cor-destaque);
+}
+
+.chipAtivo,
+.chipAtivo:hover {
+  border-color: var(--cor-destaque);
+  background: var(--cor-destaque-suave);
+  color: var(--cor-texto-principal);
+}
+
+.chipAtivo strong {
+  color: var(--cor-destaque);
+}
+
+.rotuloTextarea {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cor-texto-secundario);
+}
+
+.textarea {
+  padding: 12px 14px;
+  border-radius: var(--raio-padrao);
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo-elevado);
+  color: var(--cor-texto-principal);
+  font-family: var(--fonte-texto);
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--cor-destaque);
+}
+
+.acoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
