@@ -31,6 +31,10 @@
 .progressoTreino > span { color: var(--cor-texto-secundario); font-size: .74rem; text-align: right; }
 .botaoIniciar, .botaoFinalizar { border: 0; border-radius: 8px; padding: 11px 14px; color: #fff; background: var(--cor-destaque); font-size: .8rem; font-weight: 800; cursor: pointer; white-space: nowrap; }
 .botaoFinalizar { background: var(--cor-texto-principal); }
+.acoesTreino { display: flex; gap: 8px; }
+.botaoEditar { border: 1px solid var(--cor-borda); border-radius: 8px; padding: 10px 12px; background: var(--cor-fundo-elevado); color: var(--cor-texto-principal); font-size: .78rem; font-weight: 800; cursor: pointer; }
+.avisoEdicao { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0 0 14px; padding: 10px 12px; border-radius: 8px; background: var(--cor-destaque-suave); color: var(--cor-texto-principal); font-size: .76rem; }
+.avisoEdicao button { flex-shrink: 0; border: 0; padding: 0; background: transparent; color: var(--cor-destaque); font: inherit; font-weight: 800; cursor: pointer; }
 .barraProgresso { height: 6px; overflow: hidden; border-radius: 999px; background: var(--cor-borda); }
 .barraProgresso span { display: block; height: 100%; border-radius: inherit; background: var(--cor-destaque); transition: width var(--transicao-padrao); }
 
@@ -52,6 +56,14 @@
 .linhaSerie > strong { color: var(--cor-destaque); font-size: .75rem; text-align: center; }
 .linhaSerie label { display: flex; flex-direction: column; gap: 3px; color: var(--cor-texto-secundario); font-size: .63rem; font-weight: 700; }
 .linhaSerie input { width: 100%; min-width: 0; box-sizing: border-box; border: 1px solid var(--cor-borda); border-radius: 6px; padding: 7px; background: var(--cor-fundo-elevado); color: var(--cor-texto-principal); font: inherit; }
+.editorExercicio { grid-column: 2 / -1; display: flex; flex-direction: column; gap: 10px; padding: 12px; border: 1px solid var(--cor-borda); border-radius: 10px; background: var(--cor-fundo); }
+.camposEdicao { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.camposEdicao label { display: flex; flex-direction: column; gap: 4px; color: var(--cor-texto-secundario); font-size: .65rem; font-weight: 800; }
+.camposEdicao input { min-width: 0; border: 1px solid var(--cor-borda); border-radius: 6px; padding: 8px; background: var(--cor-fundo-elevado); color: var(--cor-texto-principal); font: inherit; }
+.acoesEditor { display: flex; flex-wrap: wrap; gap: 8px; }
+.acoesEditor button { border: 1px solid var(--cor-borda); border-radius: 6px; padding: 7px 9px; background: var(--cor-fundo-elevado); color: var(--cor-texto-principal); font-size: .7rem; font-weight: 700; cursor: pointer; }
+.acoesEditor button:disabled { cursor: not-allowed; opacity: .45; }
+.acoesEditor .acaoPerigosa { color: #b42318; }
 
 .gradeInferior { display: grid; grid-template-columns: 1fr; gap: 16px; }
 @media (min-width: 768px) {
@@ -81,6 +93,11 @@
   .exercicio { grid-template-columns: auto 1fr; }
   .metasExercicio { grid-column: 1 / -1; padding-left: 40px; flex-wrap: wrap; }
   .seriesRegistradas { grid-column: 1 / -1; }
+  .editorExercicio { grid-column: 1 / -1; }
+  .camposEdicao { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .linhaSerie { grid-template-columns: 22px repeat(3, minmax(0, 1fr)); }
   .botaoDescanso { grid-column: 2 / -1; text-align: left; padding: 3px 0; }
+  .acoesTreino { width: 100%; }
+  .acoesTreino button { flex: 1; }
+  .avisoEdicao { align-items: flex-start; flex-direction: column; }
 }

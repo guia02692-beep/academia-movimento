@@ -16,8 +16,9 @@ import {
   formatarNivel,
   formatarObjetivo,
 } from "@/utils/formatters";
-import { SerieRegistrada, SessaoTreino } from "@/types";
+import { ExercicioFicha, SerieRegistrada, SessaoTreino, TreinoPersonalizado } from "@/types";
 import { carregarSessoesTreino, salvarSessaoTreino } from "@/utils/treinoStore";
+import { carregarTreinosPersonalizados, removerTreinoPersonalizado, salvarTreinoPersonalizado } from "@/utils/treinoPersonalizadoStore";
 import styles from "./musculacao.module.css";
 
 export default function Musculacao() {
@@ -34,9 +35,26 @@ export default function Musculacao() {
   const [sessoesSalvas, setSessoesSalvas] = useState<SessaoTreino[]>([]);
   const [descansoAte, setDescansoAte] = useState<number | null>(null);
   const [agora, setAgora] = useState(Date.now());
+  const [personalizacoes, setPersonalizacoes] = useState<TreinoPersonalizado[]>([]);
+  const [modoEdicao, setModoEdicao] = useState(false);
 
-  const treinoAtual = fichas.find((ficha) => ficha.id === treinoSelecionadoId) ?? fichas[0]!;
-  useEffect(() => setSessoesSalvas(carregarSessoesTreino()), []);
+  const treinoBase = fichas.find((ficha) => ficha.id === treinoSelecionadoId) ?? fichas[0]!;
+  const personalizacaoAtual = personalizacoes.find((item) => item.treinoId === treinoBase.id);
+  const treinoAtual = useMemo(() => {
+    const ordem = personalizacaoAtual?.ordemExercicios ?? treinoBase.exercicios.map((item) => item.id);
+    const porId = new Map(treinoBase.exercicios.map((item) => [item.id, item]));
+    const exercicios = ordem
+      .map((id) => porId.get(id))
+      .filter((item): item is ExercicioFicha => Boolean(item))
+      .filter((item) => !personalizacaoAtual?.exerciciosOcultos.includes(item.id))
+      .map((item) => ({ ...item, ...personalizacaoAtual?.ajustes[item.id] }));
+    return { ...treinoBase, exercicios };
+  }, [personalizacaoAtual, treinoBase]);
+
+  useEffect(() => {
+    setSessoesSalvas(carregarSessoesTreino());
+    setPersonalizacoes(carregarTreinosPersonalizados());
+  }, []);
   useEffect(() => {
     if (!descansoAte) return;
     const intervalo = window.setInterval(() => setAgora(Date.now()), 1000);
@@ -95,6 +113,58 @@ export default function Musculacao() {
     setSessoesSalvas((atual) => [finalizada, ...atual.filter((item) => item.id !== finalizada.id)]);
     setSessao(null);
     setDescansoAte(null);
+  }
+
+  function salvarPersonalizacao(proxima: TreinoPersonalizado) {
+    salvarTreinoPersonalizado(proxima);
+    setPersonalizacoes((atual) => {
+      const semAtual = atual.filter((item) => item.treinoId !== proxima.treinoId);
+      return [...semAtual, proxima];
+    });
+  }
+
+  function obterPersonalizacaoEditavel(): TreinoPersonalizado {
+    return personalizacaoAtual ?? {
+      treinoId: treinoBase.id,
+      ordemExercicios: treinoBase.exercicios.map((item) => item.id),
+      exerciciosOcultos: [],
+      ajustes: {},
+    };
+  }
+
+  function atualizarAjuste(exercicioId: string, campo: keyof TreinoPersonalizado["ajustes"][string], valor: string) {
+    const base = obterPersonalizacaoEditavel();
+    const valorAjustado = campo === "series" || campo === "cargaSugeridaKg"
+      ? (valor === "" ? undefined : Number(valor))
+      : valor;
+    salvarPersonalizacao({
+      ...base,
+      ajustes: {
+        ...base.ajustes,
+        [exercicioId]: { ...base.ajustes[exercicioId], [campo]: valorAjustado },
+      },
+    });
+  }
+
+  function moverExercicio(exercicioId: string, direcao: -1 | 1) {
+    const base = obterPersonalizacaoEditavel();
+    const indice = base.ordemExercicios.indexOf(exercicioId);
+    const destino = indice + direcao;
+    if (indice < 0 || destino < 0 || destino >= base.ordemExercicios.length) return;
+    const ordem = [...base.ordemExercicios];
+    [ordem[indice], ordem[destino]] = [ordem[destino]!, ordem[indice]!];
+    salvarPersonalizacao({ ...base, ordemExercicios: ordem });
+  }
+
+  function ocultarExercicio(exercicioId: string) {
+    const base = obterPersonalizacaoEditavel();
+    salvarPersonalizacao({ ...base, exerciciosOcultos: [...base.exerciciosOcultos, exercicioId] });
+  }
+
+  function restaurarFicha() {
+    removerTreinoPersonalizado(treinoBase.id);
+    setPersonalizacoes((atual) => atual.filter((item) => item.treinoId !== treinoBase.id));
+    setModoEdicao(false);
   }
 
   const perfilAluno = usuario?.perfilAluno;
@@ -196,11 +266,23 @@ export default function Musculacao() {
                 Finalizar treino
               </button>
             ) : (
-              <button type="button" className={styles.botaoIniciar} onClick={iniciarTreino}>
-                Iniciar treino
-              </button>
+              <div className={styles.acoesTreino}>
+                <button type="button" className={styles.botaoEditar} onClick={() => setModoEdicao((atual) => !atual)}>
+                  {modoEdicao ? "Concluir edição" : "Personalizar treino"}
+                </button>
+                <button type="button" className={styles.botaoIniciar} onClick={iniciarTreino}>
+                  Iniciar treino
+                </button>
+              </div>
             )}
           </div>
+
+          {modoEdicao && !sessao && (
+            <div className={styles.avisoEdicao}>
+              <span>Você está editando sua versão pessoal da ficha. A prescrição original permanece preservada.</span>
+              {personalizacaoAtual && <button type="button" onClick={restaurarFicha}>Restaurar ficha original</button>}
+            </div>
+          )}
 
           {descansoAte && (
             <div className={styles.descansoAtivo} role="status">
@@ -210,7 +292,7 @@ export default function Musculacao() {
           )}
 
           <ul className={styles.listaExercicios}>
-            {treinoAtual.exercicios.map((exercicio) => (
+            {treinoAtual.exercicios.map((exercicio, indice) => (
               <li key={exercicio.id} className={`${styles.exercicio} ${
                 seriesPreenchidas(exercicio.id) >= exercicio.series ? styles.exercicioConcluido : ""
               }`}>
@@ -232,6 +314,21 @@ export default function Musculacao() {
                   {exercicio.cargaSugeridaKg && <span>{exercicio.cargaSugeridaKg} kg</span>}
                   <span className={styles.descanso}>{exercicio.descanso}</span>
                 </div>
+                {modoEdicao && !sessao && (
+                  <div className={styles.editorExercicio}>
+                    <div className={styles.camposEdicao}>
+                      <label>Séries<input type="number" min="1" max="10" value={exercicio.series} onChange={(evento) => atualizarAjuste(exercicio.id, "series", evento.target.value)} /></label>
+                      <label>Repetições<input value={exercicio.repeticoes} onChange={(evento) => atualizarAjuste(exercicio.id, "repeticoes", evento.target.value)} /></label>
+                      <label>Carga (kg)<input type="number" min="0" step="0.5" value={exercicio.cargaSugeridaKg ?? ""} onChange={(evento) => atualizarAjuste(exercicio.id, "cargaSugeridaKg", evento.target.value)} /></label>
+                      <label>Descanso<input value={exercicio.descanso} onChange={(evento) => atualizarAjuste(exercicio.id, "descanso", evento.target.value)} /></label>
+                    </div>
+                    <div className={styles.acoesEditor}>
+                      <button type="button" disabled={indice === 0} onClick={() => moverExercicio(exercicio.id, -1)}>Mover acima</button>
+                      <button type="button" disabled={indice === treinoAtual.exercicios.length - 1} onClick={() => moverExercicio(exercicio.id, 1)}>Mover abaixo</button>
+                      <button type="button" className={styles.acaoPerigosa} onClick={() => ocultarExercicio(exercicio.id)}>Ocultar exercício</button>
+                    </div>
+                  </div>
+                )}
                 {sessao && (
                   <div className={styles.seriesRegistradas}>
                     {Array.from({ length: exercicio.series }).map((_, indice) => {
