@@ -21,6 +21,7 @@
 .abaTreino span { color: var(--cor-texto-secundario); font-size: .74rem; }
 .abaTreinoAtiva { border-color: var(--cor-destaque); background: var(--cor-destaque-suave); }
 .abaTreinoAtiva strong { color: var(--cor-destaque); }
+.abaTreino:disabled { cursor: not-allowed; opacity: .55; }
 
 .cartaoTreino { border: 1px solid var(--cor-borda); border-radius: 14px; background: var(--cor-fundo-elevado); padding: 20px 22px; }
 .cabecalhoCartaoTreino { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
@@ -28,6 +29,12 @@
 .cabecalhoCartaoTreino h3 { font-size: 1.05rem; }
 .progressoTreino { display: flex; flex-direction: column; gap: 6px; min-width: 160px; }
 .progressoTreino > span { color: var(--cor-texto-secundario); font-size: .74rem; text-align: right; }
+.botaoIniciar, .botaoFinalizar { border: 0; border-radius: 8px; padding: 11px 14px; color: #fff; background: var(--cor-destaque); font-size: .8rem; font-weight: 800; cursor: pointer; white-space: nowrap; }
+.botaoFinalizar { background: var(--cor-texto-principal); }
+.acoesTreino { display: flex; gap: 8px; }
+.botaoEditar { border: 1px solid var(--cor-borda); border-radius: 8px; padding: 10px 12px; background: var(--cor-fundo-elevado); color: var(--cor-texto-principal); font-size: .78rem; font-weight: 800; cursor: pointer; }
+.avisoEdicao { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0 0 14px; padding: 10px 12px; border-radius: 8px; background: var(--cor-destaque-suave); color: var(--cor-texto-principal); font-size: .76rem; }
+.avisoEdicao button { flex-shrink: 0; border: 0; padding: 0; background: transparent; color: var(--cor-destaque); font: inherit; font-weight: 800; cursor: pointer; }
 .barraProgresso { height: 6px; overflow: hidden; border-radius: 999px; background: var(--cor-borda); }
 .barraProgresso span { display: block; height: 100%; border-radius: inherit; background: var(--cor-destaque); transition: width var(--transicao-padrao); }
 
@@ -35,13 +42,28 @@
 .exercicio { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 12px 4px; border-bottom: 1px solid var(--cor-borda); }
 .exercicio:last-child { border-bottom: none; padding-bottom: 0; }
 .exercicioConcluido { opacity: .55; }
-.checkbox { width: 26px; height: 26px; flex-shrink: 0; border-radius: 8px; border: 1px solid var(--cor-borda); background: var(--cor-fundo); color: var(--cor-destaque); font-weight: 800; cursor: pointer; }
-.exercicioConcluido .checkbox { border-color: var(--cor-destaque); background: var(--cor-destaque-suave); }
+.ordemExercicio { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: var(--cor-destaque-suave); color: var(--cor-destaque); font-size: .72rem; font-weight: 800; }
 .infoExercicio { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .tagGrupo { color: var(--cor-destaque); font-size: .65rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 .nomeExercicio { color: var(--cor-texto-principal); font-weight: 600; font-size: .92rem; }
+.ultimaVez { color: var(--cor-texto-secundario); font-size: .7rem; }
 .metasExercicio { display: flex; gap: 12px; color: var(--cor-texto-secundario); font-size: .78rem; white-space: nowrap; }
 .descanso { color: var(--cor-texto-secundario); }
+.descansoAtivo { display: flex; align-items: center; justify-content: space-between; margin: 0 0 14px; padding: 10px 12px; border-radius: 8px; color: var(--cor-texto-principal); background: var(--cor-destaque-suave); font-size: .8rem; font-weight: 800; }
+.descansoAtivo button, .botaoDescanso { border: 0; background: transparent; color: var(--cor-destaque); cursor: pointer; font-size: .75rem; font-weight: 800; }
+.seriesRegistradas { grid-column: 2 / -1; display: flex; flex-direction: column; gap: 7px; padding: 4px 0 4px; }
+.linhaSerie { display: grid; grid-template-columns: 24px repeat(3, minmax(68px, 1fr)) auto; align-items: end; gap: 8px; padding: 8px; border-radius: 8px; background: var(--cor-fundo); }
+.linhaSerie > strong { color: var(--cor-destaque); font-size: .75rem; text-align: center; }
+.linhaSerie label { display: flex; flex-direction: column; gap: 3px; color: var(--cor-texto-secundario); font-size: .63rem; font-weight: 700; }
+.linhaSerie input { width: 100%; min-width: 0; box-sizing: border-box; border: 1px solid var(--cor-borda); border-radius: 6px; padding: 7px; background: var(--cor-fundo-elevado); color: var(--cor-texto-principal); font: inherit; }
+.editorExercicio { grid-column: 2 / -1; display: flex; flex-direction: column; gap: 10px; padding: 12px; border: 1px solid var(--cor-borda); border-radius: 10px; background: var(--cor-fundo); }
+.camposEdicao { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.camposEdicao label { display: flex; flex-direction: column; gap: 4px; color: var(--cor-texto-secundario); font-size: .65rem; font-weight: 800; }
+.camposEdicao input { min-width: 0; border: 1px solid var(--cor-borda); border-radius: 6px; padding: 8px; background: var(--cor-fundo-elevado); color: var(--cor-texto-principal); font: inherit; }
+.acoesEditor { display: flex; flex-wrap: wrap; gap: 8px; }
+.acoesEditor button { border: 1px solid var(--cor-borda); border-radius: 6px; padding: 7px 9px; background: var(--cor-fundo-elevado); color: var(--cor-texto-principal); font-size: .7rem; font-weight: 700; cursor: pointer; }
+.acoesEditor button:disabled { cursor: not-allowed; opacity: .45; }
+.acoesEditor .acaoPerigosa { color: #b42318; }
 
 .gradeInferior { display: grid; grid-template-columns: 1fr; gap: 16px; }
 @media (min-width: 768px) {
@@ -70,4 +92,12 @@
   .seletorTreino { grid-template-columns: 1fr; }
   .exercicio { grid-template-columns: auto 1fr; }
   .metasExercicio { grid-column: 1 / -1; padding-left: 40px; flex-wrap: wrap; }
+  .seriesRegistradas { grid-column: 1 / -1; }
+  .editorExercicio { grid-column: 1 / -1; }
+  .camposEdicao { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .linhaSerie { grid-template-columns: 22px repeat(3, minmax(0, 1fr)); }
+  .botaoDescanso { grid-column: 2 / -1; text-align: left; padding: 3px 0; }
+  .acoesTreino { width: 100%; }
+  .acoesTreino button { flex: 1; }
+  .avisoEdicao { align-items: flex-start; flex-direction: column; }
 }

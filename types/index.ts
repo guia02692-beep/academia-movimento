@@ -113,6 +113,40 @@ export interface RegistroTreinoConcluido {
   volumeTotalKg: number;
 }
 
+// Ajustes pessoais ficam separados da ficha prescrita. Desse modo, uma
+// atualização do professor não apaga as preferências do aluno.
+export interface TreinoPersonalizado {
+  treinoId: string;
+  ordemExercicios: string[];
+  exerciciosOcultos: string[];
+  ajustes: Record<string, Partial<Pick<ExercicioFicha, "series" | "repeticoes" | "cargaSugeridaKg" | "descanso">>>;
+}
+
+// Registro criado pelo aluno enquanto executa a ficha. Ele preserva a
+// resposta real ao treino (não apenas o que foi prescrito) para que a próxima
+// sessão possa sugerir uma progressão individual.
+export interface SerieRegistrada {
+  cargaKg?: number;
+  repeticoes?: number;
+  rpe?: number;
+}
+
+export interface RegistroExercicioSessao {
+  exercicioId: string;
+  exercicioNome: string;
+  series: SerieRegistrada[];
+  observacao?: string;
+}
+
+export interface SessaoTreino {
+  id: string;
+  treinoId: string;
+  treinoNome: string;
+  iniciadaEm: string;
+  finalizadaEm?: string;
+  exercicios: Record<string, RegistroExercicioSessao>;
+}
+
 export interface FocoMuscularSemana {
   grupoMuscular: GrupoMuscular;
   percentualTrabalhado: number;
