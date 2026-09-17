@@ -170,6 +170,19 @@ export default function Musculacao() {
   const perfilAluno = usuario?.perfilAluno;
   const imc = calcularImc(perfilAluno?.pesoKg, perfilAluno?.alturaCm);
   const perfilIncompleto = !perfilAluno?.objetivo || !perfilAluno?.nivelExperiencia;
+  const nomesDias = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+  const inicioSemana = new Date();
+  inicioSemana.setHours(0, 0, 0, 0);
+  inicioSemana.setDate(inicioSemana.getDate() - ((inicioSemana.getDay() + 6) % 7));
+  const diasCalendario = Array.from({ length: 7 }, (_, indice) => {
+    const data = new Date(inicioSemana);
+    data.setDate(inicioSemana.getDate() + indice);
+    const chave = `${data.getFullYear()}-${String(data.getMonth() + 1).padStart(2, "0")}-${String(data.getDate()).padStart(2, "0")}`;
+    const concluiu = sessoesSalvas.some((item) => item.finalizadaEm?.slice(0, 10) === chave);
+    const previsto = fichas.some((ficha) => ficha.diasSemana.includes(nomesDias[data.getDay()]!));
+    const passou = data < new Date(new Date().setHours(0, 0, 0, 0));
+    return { data, concluiu, previsto, status: concluiu ? "concluido" : !previsto ? "descanso" : passou ? "faltou" : "previsto" };
+  });
 
   return (
     <Layout perfil="aluno" nomeUsuario={usuario?.nome || "Atleta"}>
@@ -183,8 +196,8 @@ export default function Musculacao() {
               : "Sem musculação prevista para hoje — aproveite para descansar."}
           </p>
         </div>
-        <Link href="/aluno/onboarding" className={styles.botaoNeutro}>
-          Editar perfil físico
+        <Link href="/aluno/perfil" className={styles.botaoNeutro}>
+          Ver meu perfil
         </Link>
       </section>
 
@@ -194,7 +207,7 @@ export default function Musculacao() {
             Complete seu objetivo e nível de experiência para receber uma ficha
             e cargas sugeridas totalmente personalizadas.
           </p>
-          <Link href="/aluno/onboarding" className={styles.linkAviso}>
+          <Link href="/aluno/perfil" className={styles.linkAviso}>
             Completar perfil →
           </Link>
         </Card>
@@ -219,6 +232,13 @@ export default function Musculacao() {
           </Card>
         </section>
       )}
+
+      <section className={styles.calendario} aria-label="Calendário semanal de treino">
+        <div><p className={styles.sobrancelha}>ACOMPANHAMENTO</p><h2>Sua semana de treino</h2><span>Verde: concluído · cinza: descanso · vermelho: falta</span></div>
+        <div className={styles.diasCalendario}>{diasCalendario.map((dia) => <div key={dia.data.toISOString()} className={`${styles.diaCalendario} ${styles[dia.status]}`}>
+          <small>{dia.data.toLocaleDateString("pt-BR", { weekday: "short" }).replace(".", "")}</small><strong>{dia.data.getDate()}</strong><i aria-label={dia.status === "concluido" ? "Treino concluído" : dia.status === "descanso" ? "Dia de descanso" : dia.status === "faltou" ? "Treino não realizado" : "Treino previsto"}>{dia.status === "concluido" ? "✓" : dia.status === "faltou" ? "×" : ""}</i>
+        </div>)}</div>
+      </section>
 
       <section className={styles.secao}>
         <div className={styles.cabecalhoSecao}>
@@ -290,6 +310,14 @@ export default function Musculacao() {
               <button type="button" onClick={() => setDescansoAte(null)}>Encerrar</button>
             </div>
           )}
+
+          <div className={styles.checklist} aria-label="Checklist do treino">
+            <div className={styles.checklistTitulo}><strong>Checklist do treino</strong><span>{sessao ? "Preencha carga e repetições para concluir cada exercício." : "Inicie o treino e acompanhe cada etapa por aqui."}</span></div>
+            <div className={styles.itensChecklist}>{treinoAtual.exercicios.map((exercicio, indice) => {
+              const concluido = seriesPreenchidas(exercicio.id) >= exercicio.series;
+              return <div key={exercicio.id} className={`${styles.itemChecklist} ${concluido ? styles.itemChecklistConcluido : ""}`}><b>{concluido ? "✓" : indice + 1}</b><span>{exercicio.nome}</span><small>{concluido ? "Concluído" : `${exercicio.series} séries`}</small></div>;
+            })}</div>
+          </div>
 
           <ul className={styles.listaExercicios}>
             {treinoAtual.exercicios.map((exercicio, indice) => (

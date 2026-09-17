@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useTheme } from "@/hooks/useTheme";
 import { obterIniciais } from "@/utils/formatters";
 import styles from "./Header.module.css";
@@ -12,13 +11,13 @@ export function Header({ nomeUsuario }: HeaderProps) {
 
   return (
     <header className={styles.header}>
-      <Link href="/" className={styles.marca}>
+      <div className={styles.marca} aria-label="Academia Movimento">
         <span className={styles.marcaSimbolo}>M</span>
         <span>
           <strong>movimento</strong>
           <small>academia</small>
         </span>
-      </Link>
+      </div>
 
       <div className={styles.acoes}>
         <button

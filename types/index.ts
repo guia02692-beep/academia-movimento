@@ -33,6 +33,8 @@ export interface Usuario {
   id: string;
   nome: string;
   email: string;
+  celular?: string;
+  endereco?: string;
   perfil: PerfilUsuario;
   perfilAluno?: PerfilAluno;
   onboardingCompleto?: boolean;

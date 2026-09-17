@@ -10,6 +10,7 @@
 .gradePerfil { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 26px; }
 .valorPerfil { margin: 0; color: var(--cor-texto-principal); font-family: var(--fonte-titulo); font-size: 1.25rem; font-weight: 700; }
 .itemSecundario { color: var(--cor-texto-secundario); font-size: .78rem; }
+.calendario { display:flex; justify-content:space-between; align-items:center; gap:20px; margin:0 0 26px; padding:16px 18px; border:1px solid var(--cor-borda); border-radius:14px; background:var(--cor-fundo-elevado); }.calendario h2{margin:0;font-size:1rem}.calendario > div > span{display:block;margin-top:5px;color:var(--cor-texto-secundario);font-size:.72rem}.diasCalendario{display:grid;grid-template-columns:repeat(7,44px);gap:7px}.diaCalendario{display:grid;place-items:center;gap:2px;min-height:58px;border-radius:9px;background:var(--cor-fundo);color:var(--cor-texto-secundario)}.diaCalendario small{text-transform:uppercase;font-size:.58rem;font-weight:800}.diaCalendario strong{font-size:.86rem}.diaCalendario i{height:10px;font-size:.76rem;font-style:normal;font-weight:900}.concluido{background:#16794b;color:#fff}.descanso{background:var(--cor-borda);color:var(--cor-texto-secundario)}.faltou{background:#b42318;color:#fff}.previsto{border:1px solid var(--cor-destaque);color:var(--cor-destaque)}
 
 .secao { margin-bottom: 24px; }
 .cabecalhoSecao { margin-bottom: 12px; }
@@ -37,6 +38,7 @@
 .avisoEdicao button { flex-shrink: 0; border: 0; padding: 0; background: transparent; color: var(--cor-destaque); font: inherit; font-weight: 800; cursor: pointer; }
 .barraProgresso { height: 6px; overflow: hidden; border-radius: 999px; background: var(--cor-borda); }
 .barraProgresso span { display: block; height: 100%; border-radius: inherit; background: var(--cor-destaque); transition: width var(--transicao-padrao); }
+.checklist{margin:0 0 16px;padding:13px;border:1px solid var(--cor-borda);border-radius:10px;background:var(--cor-fundo)}.checklistTitulo{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px}.checklistTitulo strong{font-size:.83rem;color:var(--cor-texto-principal)}.checklistTitulo span{color:var(--cor-texto-secundario);font-size:.72rem;text-align:right}.itensChecklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.itemChecklist{display:grid;grid-template-columns:24px 1fr auto;align-items:center;gap:8px;padding:7px;border-radius:7px;background:var(--cor-fundo-elevado);font-size:.74rem}.itemChecklist b{display:grid;place-items:center;width:20px;height:20px;border:1px solid var(--cor-borda);border-radius:50%;color:var(--cor-texto-secundario);font-size:.65rem}.itemChecklist span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--cor-texto-principal);font-weight:700}.itemChecklist small{color:var(--cor-texto-secundario);font-size:.62rem}.itemChecklistConcluido{background:var(--cor-destaque-suave)}.itemChecklistConcluido b{border-color:var(--cor-destaque);background:var(--cor-destaque);color:#fff}.itemChecklistConcluido small{color:var(--cor-destaque);font-weight:800}
 
 .listaExercicios { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .exercicio { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 12px 4px; border-bottom: 1px solid var(--cor-borda); }
@@ -100,4 +102,5 @@
   .acoesTreino { width: 100%; }
   .acoesTreino button { flex: 1; }
   .avisoEdicao { align-items: flex-start; flex-direction: column; }
+  .calendario { align-items:stretch; flex-direction:column; }.diasCalendario{grid-template-columns:repeat(7,1fr)}.itensChecklist{grid-template-columns:1fr}.checklistTitulo{align-items:flex-start;flex-direction:column}.checklistTitulo span{text-align:left}
 }

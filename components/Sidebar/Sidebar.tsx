@@ -12,10 +12,10 @@ interface ItemMenu {
 const MENU_POR_PERFIL: Record<PerfilUsuario, ItemMenu[]> = {
   aluno: [
     { rotulo: "Início", href: "/aluno/dashboard", icone: "⌂" },
-    { rotulo: "Musculação", href: "/aluno/musculacao", icone: "🏋" },
+    { rotulo: "Musculação", href: "/aluno/musculacao", icone: "◈" },
     { rotulo: "Minhas aulas", href: "/aluno/aulas", icone: "◫" },
     { rotulo: "Reservas", href: "/aluno/reservas", icone: "✓" },
-    { rotulo: "Meu perfil", href: "/aluno/onboarding", icone: "✎" },
+    { rotulo: "Meu perfil", href: "/aluno/perfil", icone: "✎" },
   ],
   admin: [
     { rotulo: "Visão geral", href: "/admin/dashboard", icone: "⌁" },
