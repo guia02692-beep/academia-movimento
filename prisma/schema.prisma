@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+enum Plano {
+  FIT
+  SMART
+  BLACK
+}
+
+enum StatusAluno {
+  ATIVO
+  ATENCAO
+  INATIVO
+}
+
+enum Objetivo {
+  HIPERTROFIA
+  EMAGRECIMENTO
+  CONDICIONAMENTO
+  SAUDE
+}
+
+enum Nivel {
+  INICIANTE
+  INTERMEDIARIO
+  AVANCADO
+}
+
+model Aluno {
+  id           String      @id @default(cuid())
+  nome         String
+  email        String      @unique
+  plano        Plano       @default(FIT)
+  status       StatusAluno @default(ATIVO)
+  pesoKg       Float?
+  alturaCm     Int?
+  objetivo     Objetivo?
+  nivel        Nivel?
+  diasTreino   Int[]
+  ultimoAcesso DateTime?
+  criadoEm     DateTime    @default(now())
+  atualizadoEm DateTime    @updatedAt
+}

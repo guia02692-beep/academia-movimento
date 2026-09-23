@@ -5,3 +5,5 @@ out
 npm-debug.log*
 .DS_Store
 *.tsbuildinfo
+
+/generated/prisma
